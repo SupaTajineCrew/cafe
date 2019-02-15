@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container mt-4">
+        <h1>Ajouter un nouveau produit</h1>
+        {{ include('admin/_form.html.twig',{form: form, button: 'Créer'}) }}
+    </div>
+
+{% endblock %}
