@@ -28,7 +28,8 @@ class AdminController extends AbstractController
         $this->repository = $repository;
         $this->pm = $pm;
     }
-    // "pm" est une variable de product manager
+    // "pm" est une variable initialiser  de product manager
+
 
     /**
      * @Route("/admin", name="admin.product.index")
@@ -56,7 +57,7 @@ class AdminController extends AbstractController
             //on demande au formulaire de persister les information
             $this->pm->persist($product);
             $this->pm->flush();
-            $this->addFlash('success','Produit ajouter à votre liste des produits avec succés');
+            $this->addFlash('success','Produit ajouté à votre liste des produits avec succés');
             return $this->redirectToRoute('admin.product.index');
         }
         return $this->render('admin/new.html.twig', [
@@ -73,7 +74,7 @@ class AdminController extends AbstractController
     public  function  edit (Product $product, Request $request)
     {
         $form = $this->createForm(ProductType::class, $product);
-        // on demande a notre formulaire de gérer la requette
+        // on demande à notre formulaire de gérer la requette
         $form->handleRequest($request);
 
         if ($form ->isSubmitted() && $form->isValid()){
@@ -99,7 +100,8 @@ class AdminController extends AbstractController
         {
             $this->pm->remove($product);
             $this->pm->flush();
-            $this->addFlash('success','Produit supprimer avec succés');
+            $this->addFlash('success','Produit supprimé avec succés');
+
         }
         return $this->redirectToRoute('admin.product.index');
     }

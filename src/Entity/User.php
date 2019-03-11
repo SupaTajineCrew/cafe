@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -19,6 +20,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[0-9-a-zA-Z]+$/")
      */
     private $username;
 
@@ -114,7 +116,6 @@ class User implements UserInterface, \Serializable
             $this->password
         ]);
     }
-
     /**
      * Constructs the object
      * @link https://php.net/manual/en/serializable.unserialize.php
@@ -130,6 +131,6 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password
-            )= unserialize($serialized,['allowed_classes'=> false]);
+            ) = unserialize($serialized,['allowed_classes'=> false]);
     }
 }
