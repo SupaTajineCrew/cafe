@@ -11,6 +11,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  * @UniqueEntity("title")
