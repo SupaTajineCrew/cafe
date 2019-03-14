@@ -15,6 +15,7 @@
                 <th>Titre</th>
                 <th>Description</th>
                 <th>Catégorie</th>
+                <th>images</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -24,6 +25,7 @@
                     <td>{{ product.title }}</td>
                     <td>{{ product.description }}</td>
                     <td>{{ product.category.name }}</td>
+                    <td><img src="/images/products/{{ product.filename }}" alt="card-img-top" style="width: 10% ; height: auto"></td>
                     <td>
                         <a href="{{ path('admin.product.edit',{id:product.id}) }}" class="btn btn-secondary">Editer</a>
                         <form method="post" action="{{ path('admin.product.delete',{id: product.id}) }}"
@@ -38,7 +40,37 @@
             </tbody>
         </table>
         <div class="text-right">
-            <a href="{{ path('admin.product.new') }}" class="btn btn-primary" style="text-align">Nouveau produit</a>
+            <a href="{{ path('admin.product.new') }}" class="btn btn-primary" style="text-align">Nouveau produit</a><br><br>
+        </div>
+        <h1>Gestion des catégories</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Catégorie</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <a href="{{ path('admin.category.edit',{id:category.id}) }}" class="btn btn-secondary">Editer</a>
+                        <form method="post" action="{{ path('admin.category.delete',{id: category.id}) }}"
+                              style="display:inline-block" onsubmit = "return confirm('Vous confirmez la suppression ?')"><form method="post" action="{{ path('admin.category.delete',{id: category.id}) }}" style="display:inline-block" onsubmit = "return confirm('Vous confirmez la suppression ?')">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
+                                <button class="btn btn-danger">Supprimer</button>
+                            </form>
+
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-right">
+            <a href="{{ path('admin.category.new') }}" class="btn btn-success" style="text-align">Nouvelle catégorie</a>
         </div>
     </div>
 {% endblock %}
