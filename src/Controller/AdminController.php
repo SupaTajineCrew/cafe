@@ -73,7 +73,7 @@ class AdminController extends AbstractController
             $this->addFlash('success','Categorie ajouté à votre liste des categories avec succés');
             return $this->redirectToRoute('admin.product.index');
         }
-        return $this->render('admin/new.html.twig', [
+        return $this->render('admin/newcat.html.twig', [
             'category' => $category ,
             'form' => $form->createView()
         ]);
