@@ -34,6 +34,8 @@ class Product
     /**
      * @var File|null
      * @Vich\UploadableField(mapping="product_image", fileNameProperty="filename")
+     * @Assert\File(
+     *     maxSize="4096")
      */
     private $imageFile;
 
@@ -170,6 +172,7 @@ class Product
      * @param File|null $imageFile
      * @return Product
      */
+
     public function setImageFile(?File $imageFile): Product
     {
         $this->imageFile = $imageFile;

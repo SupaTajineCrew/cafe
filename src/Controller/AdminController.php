@@ -5,7 +5,6 @@ namespace  App\Controller;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Form\ProductType;
-
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -119,7 +118,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin.product.index');
         }
 
-        return $this->render('admin/edit.html.twig', [
+        return $this->render('admin/editcat.html.twig', [
             'category' => $category,
             'form' => $form->createView()
         ]);
