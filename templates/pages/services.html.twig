@@ -1,5 +1,53 @@
 {% extends 'base.html.twig' %}
-{% block title 'Nos services' %}
+{% block title %}nous contacter{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="services.css">
+{% endblock %}
+
 {% block body %}
-    <h1>ma page services</h1>
-{% endblock%}
+
+
+    <div class="container">
+        <h1> Le Café Grognon</h1>
+        <h2> 2 avenue Léon Dacheux<br> 67100 Strasbourg</h2>
+        <p><br>Facebook : https://www.facebook.com/lecafegrognon/
+            <br> Email : cafegrognon@gmail.com
+            <br> Téléphone : 03-88-39-63-46
+
+            <h2>
+        <p>Transports en commun :</p></h2>
+        <p> Tram A et E - Arrêt Krimmeri Meinau
+            Bus N2, 14, 24 - Arrêt Neudorf Marché
+        </p>
+
+        <p>Horaires :
+            <br> Du lundi au mercredi : 16H30 – 1H30
+            <br> Du jeudi au samedi : 16H30 – 3H00
+            <br>Dernière tournée 45 minutes avant la fermeture !
+        </p>
+        <p><strong>Nous accueillons aussi bien les duo/couples que les grands groupes ! pour programmer un événement n’hésite
+                pas à nous contacter !</strong></p>
+    </div>
+    <div class="container2">
+        <div><h3 contenteditable spellcheck="false">HAPPY HOUR<br>16h30 20h30</h3></div>
+        <div>
+            <p><img src="img/terre.png"> Terasse climatisé en été!</p>
+        </div>
+        <div>
+            <p>Amoureux de sport? Une diffusion des évènements à la demande!!  <img src="img/tvi.png"></p>
+        </div>
+        <div>
+            <p><img src="img/wheelchaire.png">  Accessibilité des lieux pour les personne à mobilité réduites.</p>
+        </div>
+        <div>
+            <p>Unbillard et des jeux de sociétés sont à votre disposition  <img src="img/chessss.png"></p>
+        </div>
+        <div>
+            <p><img src="img/wifii.png">  Un accès WIFI pour rester connecter même à l'heure de l'apéro</p>
+        </div>
+    </div>
+
+
+{% endblock body %}

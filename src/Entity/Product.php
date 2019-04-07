@@ -34,8 +34,6 @@ class Product
     /**
      * @var File|null
      * @Vich\UploadableField(mapping="product_image", fileNameProperty="filename")
-     * @Assert\File(
-     *     maxSize="4096")
      */
     private $imageFile;
 

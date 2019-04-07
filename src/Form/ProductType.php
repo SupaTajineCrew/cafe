@@ -15,7 +15,7 @@ class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // la cetegrie dans la page admin pour modifier ou ajouter les produits
+        // le formulaire pour modifier ou ajouter les produits
         $builder
             ->add('title')
             ->add('description')
@@ -28,7 +28,7 @@ class ProductType extends AbstractType
                 return $er->createQueryBuilder('c')
                     ->orderBy('c.name', 'ASC');
                 },
-            'choice_label' => 'name',
+            'choice_label' => 'Name',
         ]);
 
     }

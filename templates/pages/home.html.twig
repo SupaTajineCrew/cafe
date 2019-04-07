@@ -1,2 +1,111 @@
 {% extends 'base.html.twig' %}
 {% block title 'Accueil' %}
+
+{% block body %}
+    <div class="container m">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-2">
+                <br>
+                <h3>Venez découvrir en ce moment :</h3>
+                <a href="{{ path('products') }}"><img src="logo/Wh.Irl.The%20Irishman.SM.JPG"
+                                                      style="width:150px ; height:auto;"></a>
+                <p>Notre produit du mois </p>
+                <br>
+                <h2> SERVICES : </h2>
+                <a class="nav-link" href="{{ path('services') }}"><img src="logo/tvi1.png"></a>
+                <a class="nav-link" href="{{ path('services') }}"><img src="logo/wifii1.png"></a>
+                <a class="nav-link" href="{{ path('services') }}"><img src="logo/chessss1.png"></a>
+                <a class="nav-link" href="{{ path('services') }}"><img src="logo/wheelchaire1.png"></a>
+                <a class="nav-link" href="{{ path('services') }}"><img src="logo/terre1.png"></a>
+
+            </div>
+
+            <div class="col-md">
+                <h1 class="display-3"><strong>Le café Grognon</strong></h1>
+                <br>
+                <p class="lead">Si tu passes par Neudorf tu ne peux pas manquer le Café Grognon ! Bar de quartier
+                    par excellence avec ses produits de qualités et son mot d’ordre : convivialité !
+                    Ce qu’en disent nos clients : « On s’y sent comme à la maison ! »<br>
+                    Pour une soirée en amoureux, refaire le monde avec quelques potes ou fêter un événement avec
+                    plein
+                    de convives on fera toujours de notre mieux pour que chacun se sente bien !
+                </p>
+            </div>
+
+            <!---wigdet facebook envent----->
+            <div class="col-md-4">
+
+                <div class="widget container ">
+                    <br>
+                    <h2>HAPPY HOUR :</h2>
+                    <h3><p><a class="nav-link" href="{{ path('services') }}"><img src="logo/happyy.png">16h30-20h30</a>
+                        </p></h3>
+
+                    <h2><a class="nav-link" href="{{ path('events') }}">En ce moment :</a></h2>
+
+                    <div class="fb-page"
+                         data-tabs="events"
+                         data-href="https://www.facebook.com//lecafegrognon/"
+                         data-small-header="true"
+                         data-width="380"></div>
+                    <div id="fb-root"></div>
+
+                    <script>(function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2&appId=369666220536879&autoLogAppEvents=1';
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                    </script>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!---fin wigdet facebook envent----->
+
+    <!---caroussel--------------------------------------------------------------------------->
+
+
+    <div class="container text-center my-3">
+        <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+            <div class="carousel-inner w-100" role="listbox">
+                <div class="carousel-item row no-gutters active">
+                    <div class="col-3 float-left"><img class="img-fluid"
+                                                       src="img/gal/chenille1.jpg"></div>
+                    <div class="col-3 float-left"><img class="img-fluid"
+                                                       src="img/gal/GirlOnFire.jpg"></div>
+                    <div class="col-3 float-left"><img class="img-fluid"
+                                                       src="img/gal/AgaCosto.jpg"></div>
+                    <div class="col-3 float-left"><img class="img-fluid"
+                                                       src="img/gal/Citrouille!.jpg"></div>
+                </div>
+                <div class="carousel-item row no-gutters">
+                    <div class="col-3 float-left"><img class="img-fluid" src="img/gal/Bouh.jpg">
+                    </div>
+                    <div class="col-3 float-left"><img class="img-fluid"
+                                                       src="img/gal/Agateau.jpg"></div>
+                    <div class="col-3 float-left"><img class="img-fluid"
+                                                       src="img/gal/Ali&Kikichouffe.jpg"></div>
+                    <div class="col-3 float-left"><img class="img-fluid"
+                                                       src="img/gal/halloween.jpg"></div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <a href="{{ path('gallery') }}">Pour toutes les voir...</a>
+    </div>
+
+    <p></p>
+    </div>
+{% endblock body %}

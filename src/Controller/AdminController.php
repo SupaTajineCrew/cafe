@@ -3,16 +3,19 @@
 namespace  App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Galery;
+use App\Entity\Product;
 use App\Form\CategoryType;
+use App\Form\GaleryType;
 use App\Form\ProductType;
 use App\Repository\CategoryRepository;
+use App\Repository\GaleryRepository;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Product;
 
 class AdminController extends AbstractController
 {
@@ -21,16 +24,18 @@ class AdminController extends AbstractController
      * @param ProductRepository $repository
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(ProductRepository $repop, CategoryRepository $repoc) : Response
+    public function index(ProductRepository $repop, CategoryRepository $repoc, GaleryRepository $repo) : Response
     {
         // je reccuper tous les produits dans ma bdd et je les mets dans une variable products
         $products = $repop->findAll();
         $categories = $repoc->findAll();
+        $galeries = $repo->findAll();
 
         // je génere ma vue
         return $this->render('admin/index.html.twig', [
             'products' => $products,
-            'categories' => $categories
+            'categories' => $categories,
+            'galeries'=> $galeries
         ]);
     }
     /**
@@ -74,6 +79,28 @@ class AdminController extends AbstractController
         }
         return $this->render('admin/newcat.html.twig', [
             'category' => $category ,
+            'form' => $form->createView()
+        ]);
+    }
+    /**
+    * @Route("/admin/galery/create", name="admin.galery.new")
+    */
+    public function newpicture(Request $request, ObjectManager $gm)
+    {
+        $galery = new Galery();
+        // on crée un formulaire
+        $form = $this -> createForm(GaleryType::class, $galery);
+        $form->handleRequest($request);
+
+        if ($form ->isSubmitted() && $form->isValid()){
+            //on demande au formulaire de persister les information
+            $gm->persist($galery);
+            $gm->flush();
+            $this->addFlash('success','Photo ajouté à votre galerie  avec succés');
+            return $this->redirectToRoute('admin.product.index');
+        }
+        return $this->render('admin/new.html.twig', [
+            'galery' => $galery ,
             'form' => $form->createView()
         ]);
     }
@@ -156,5 +183,20 @@ class AdminController extends AbstractController
         }
         return $this->redirectToRoute('admin.product.index');
     }
+    /**
+     * @Route("/admin/galery/{id}", name="admin.galery.delete", methods="DELETE")
+     * @param Galery $galery
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function  deletepicture(Galery $galery, Request $request, ObjectManager $gm)
+    {
+        if($this->isCsrfTokenValid('delete'.$galery->getId(),$request->get('_token')))
+        {
+            $gm->remove($galery);
+            $gm->flush();
+            $this->addFlash('success','Photo supprimé avec succés');
 
+        }
+        return $this->redirectToRoute('admin.product.index');
+    }
 }

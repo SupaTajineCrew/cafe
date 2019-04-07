@@ -1,7 +1,14 @@
 {% extends 'base.html.twig' %}
-{% block title 'Nos produits' %}
+{% block title %} Du bon dans vos bouches! {% endblock %}
+{%  block stylesheets %}
+    {{  parent() }}
+    <link rel="stylesheet" type="text/css" href="product.css">
+{%  endblock  %}
 {% block body %}
-    <h1>ma page produits</h1>
+    <!------ Include the above in your HEAD tag ---------->
+    <h1>Du bon dans vos bouche</h1>
+    <br>
+    <h2>Les spiritueux !</h2>
     <div class="container  mt-4">
     <table class="table table-striped">
         <thead>
@@ -10,19 +17,68 @@
             <th>Descriptions</th>
             <th>Catégories</th>
             <th>Images</th>
-
         </thead>
         <tbody>
+        <!---------------------caroussel----------------------------------------->
+
             {% for product in products %}
-                <tr>
-                    <td>{{ product.title }}</td>
-                    <td>{{ product.description }}</td>
-                    <td>{{ product.category.name }}</td>
-                    <td><img src="{{ vich_uploader_asset(product,'imageFile') }}" alt="card-img-top" style="width: 10% ; height: auto"></td>
-                </tr>
+            <div class="carou">
+                <div class="slider">
+                    <figure class="slider__item"><img class="slider__image"
+                                                      src="{{ vich_uploader_asset(product,'imageFile') }}/600/360?image=#{itemsImg}"/>
+                        <figcaption class="slider__caption"><td>{{ product.title }}</td>
+                            <br><p>{{ product.description }}</p></figcaption>
+                    </figure>
+                </div>
+
+                <div class="slider__btn"></div>
+            </div>
             {% endfor %}
         </tbody>
     </table>
     </div>
+    <div class="container">
+        <h2>Des bières !</h2> <img src="img/logo/1.png" alt="logo bière" /><img src="img/logo/2.png" alt="logo bière" /><img src="img/logo/3.png" alt="logo bière" />
+        <img src="img/logo/4.png" alt="logo bière" /><img src="img/logo/5.png" alt="logo bière" /><img src="img/logo/6.png" alt="logo bière" />
+        <img src="img/logo/7.png" alt="logo bière" /><img src="img/logo/8.png" alt="logo bière" /><img src="img/logo/9.png" alt="logo bière" />
+        <img src="img/logo/11.png" alt="logo bière" />
+        <p>
+            Chez nous pas de bière de la semaine, nous travaillons beaucoup avec des brasseries artisanales du coup un
+            fut
+            de
+            ceci, deux fut de cela mais d’une semaine à l’autre plein de produits peuvent changer ! surtout que l’on n’a
+            pas
+            moins de 18 tireuses !!!
+            Pour gouter des bières exceptionnelles à tarifs plus abordable profite de notre Happy Hour de 16H30 à 20H30
+            !
 
-{% endblock%}
+        </p>
+
+
+        <h2>Des vins !</h2>
+        <p>Grande ou petite soif, plutôt doux ou sec, on aura de quoi te contenter !
+            Au verre une sélection de 5 rouge, et 5 blanc qui eux aussi tourne selon les stocks =) toujours au moins un
+            blanc et un rouge bio !
+            A la bouteille une trentaine de référence à partir de 25€ !
+        </p>
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+    {{  parent() }}
+
+<script>
+    $(function () {
+        var btn = $(".slider__btn");
+
+        btn.on("click", function () {
+            $(".slider__item").first().clone().appendTo(".slider");
+            $(".slider__image").first().css({transform: "rotateX(-180deg)", opacity: 0});
+            setTimeout(function () {
+                $(".slider__item").first().remove();
+            }, 200);
+        });
+    });
+</script>
+{% endblock  %}

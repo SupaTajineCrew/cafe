@@ -25,13 +25,14 @@
                     <td>{{ product.title }}</td>
                     <td>{{ product.description }}</td>
                     <td>{{ product.category.name }}</td>
-                    <td><img src="/images/products/{{ product.filename }}" alt="card-img-top" style="width: 10% ; height: auto"></td>
+                    <td><img src="/images/products/{{ product.filename }}" alt="card-img-top"
+                             style="width: 10% ; height: auto"></td>
                     <td>
                         <a href="{{ path('admin.product.edit',{id:product.id}) }}" class="btn btn-secondary">Editer</a>
                         <form method="post" action="{{ path('admin.product.delete',{id: product.id}) }}"
-                              style="display:inline-block" onsubmit = "return confirm('Vous confirmez la suppression ?')">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                              style="display:inline-block" onsubmit="return confirm('Vous confirmez la suppression ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
                             <button class="btn btn-danger">Supprimer</button>
                         </form>
                     </td>
@@ -55,14 +56,13 @@
                 <tr>
                     <td>{{ category.name }}</td>
                     <td>
-                        <a href="{{ path('admin.category.edit',{id:category.id}) }}" class="btn btn-secondary">Editer</a>
+                        <a href="{{ path('admin.category.edit',{id:category.id}) }}"
+                           class="btn btn-secondary">Editer</a>
                         <form method="post" action="{{ path('admin.category.delete',{id: category.id}) }}"
-                              style="display:inline-block" onsubmit = "return confirm('Vous confirmez la suppression ?')"><form method="post" action="{{ path('admin.category.delete',{id: category.id}) }}" style="display:inline-block" onsubmit = "return confirm('Vous confirmez la suppression ?')">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
-                                <button class="btn btn-danger">Supprimer</button>
-                            </form>
-
+                              style="display:inline-block" onsubmit="return confirm('Vous confirmez la suppression ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
                         </form>
                     </td>
                 </tr>
@@ -72,5 +72,35 @@
         <div class="text-right">
             <a href="{{ path('admin.category.new') }}" class="btn btn-success" style="text-align">Nouvelle catégorie</a>
         </div>
+
+        <div class="card-md-4">
+            <h1>Gestion des photos</h1>
+
+        </div>
+    <div class="container">
+    <div class="row">
+
+        {% for galery in galeries %}
+            <div class="col">
+                        <img src="/images/events/{{ galery.picture }}" alt="card-img-top"
+                        style="width: 10% ; height: auto">
+
+        <form method="post" action="{{ path('admin.galery.delete',{id: galery.id}) }}"
+              style="display:inline-block" onsubmit="return confirm('Vous confirmez la suppression ?')">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ galery.id) }}">
+            <button class="btn btn-danger">Supprimer</button>
+        </form>
+                    </div>
+
+        {% endfor %}
     </div>
+    </div>
+
+        <div class="text-right">
+            <a href="{{ path('admin.galery.new') }}" class="btn btn-primary" style="text-align">Nouvelle image</a><br><br>
+        </div>
+
+    </div>
+
 {% endblock %}

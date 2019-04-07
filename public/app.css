@@ -1,0 +1,54 @@
+html, body{
+    background-color: #222222;
+    background: transparent url("logo/canapVador1.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+#logo{
+    position:absolute;
+    margin-top: 1em;
+
+}
+
+.navbar-toggler{
+    margin-left: 90%;
+}
+
+.container m{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.navbar{
+    background-color: #690d0d;
+    margin-bottom: 6em;
+
+}
+body,a{
+    color: #daeb84;
+    text-align: center;
+}
+
+li{
+    margin-left: 6em;
+
+}
+
+h1, h2{
+    color: #AA3333;
+    text-align: center;
+}
+.jumbotron{
+    background-color: #222222;
+}
+footer {
+    color: lightgray;
+    background-color: #690d0d;
+}
+.youtube{
+    width: 50%;
+    margin: auto;
+}
